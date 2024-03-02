@@ -2,6 +2,8 @@ const { connection } = require('./database/connection');
 const express = require('express');
 const cors = require('cors');
 
+const articleRoutes = require('./routes/articleRoutes');
+
 // DB Connection
 connection();
 
@@ -9,7 +11,10 @@ connection();
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // Parse all the objects cames from the requests to a JSON
+app.use(express.json()); // Parse all the objects cames from the requests to a JSON if content-type: application/json
+app.use(express.urlencoded({extended: true})); // For requests that have content-type: form-urlencoded
+
+app.use('/api', articleRoutes);
 
 app.listen(3001, () => { 
     console.log('Server running at port 3001!');
