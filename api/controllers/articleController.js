@@ -5,7 +5,7 @@ const path = require('path');
 
 const newArticle = (req, res) => {
     
-    const { title, content, date, image } = req.body;
+    const { title, content } = req.body;
 
     try {
         
@@ -102,7 +102,7 @@ const deleteArticle = (req, res) => {
 const editArticle = (req, res) => {
 
     const { id } = req.params;
-    const { title, content, date, image } = req.body;
+    const { title, content } = req.body;
 
     try {
 
@@ -141,7 +141,7 @@ const upload = (req, res) => {
     let extension = fileplit[1];
 
     if (extension != 'png' && extension != 'jpg' && extension != 'jpeg' && extension != 'gif') {
-        fs.unlink(req.file.path, (error) => {
+        fs.unlink(req.file.path, () => {
             return res.status(400).json({
                 message: "Invalid file"
             });
