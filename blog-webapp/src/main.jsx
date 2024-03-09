@@ -1,7 +1,11 @@
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import ReactDOM from 'react-dom/client';
+import { Home } from './views/Home.jsx';
+import { BrowserRouter } from "react-router-dom";
+import { Router } from './router/Router.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <App />
+    <BrowserRouter>
+        <Home />
+        <Router />
+    </BrowserRouter>
 )
