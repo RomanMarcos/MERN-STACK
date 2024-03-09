@@ -1,6 +1,7 @@
 const validator = require('validator');
 const articleModel = require('../models/Article');
 const fs = require('fs');
+const path = require('path');
 
 const newArticle = (req, res) => {
     
@@ -165,11 +166,28 @@ const upload = (req, res) => {
         });
 }
 
+const image = (req, res) => {
+    let file = req.params.file;
+    let localPath = `./images/articles/${file}`;
+
+    fs.stat(localPath, (error, exist) => {
+        if (exist) {
+            return res.sendFile(path.resolve(localPath));
+        } else {
+            return res.status(404).json({
+                status: 'Error',
+                message: 'The image does not exist..'
+            });
+        }
+    });
+}
+
 module.exports = {
     newArticle,
     getArticles,
     getArticle,
     deleteArticle,
     editArticle,
-    upload
+    upload,
+    image
 }

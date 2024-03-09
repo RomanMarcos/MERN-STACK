@@ -22,5 +22,6 @@ router.delete('/deleteArticle/:id', articleController.deleteArticle);
 router.put('/edit/:id', articleController.editArticle);
 //The second params on the following route definition is a Middleware that actually will execute BEFORE the upload method of the controller
 router.post('/uploadImg/:id', upload.single('file'), articleController.upload);
+router.get('/image/:file', articleController.image);
 
 module.exports = router;
