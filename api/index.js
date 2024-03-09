@@ -16,9 +16,6 @@ app.use(express.urlencoded({extended: true})); // For requests that have content
 
 app.use('/api', articleRoutes);
 
-
-
-
 app.listen(3001, () => { 
     console.log('Server running at port 3001!');
 });
