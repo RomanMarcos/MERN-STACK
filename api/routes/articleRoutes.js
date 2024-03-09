@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
+var multer = require('multer');
 
-const storage= multer.diskStorage({
-    destination: function(req, file, cb) {
-        // cb method allow me to define where the files will be storage, in this case inside the /images/articles/ folder
-        cb(null, './images/articles/');
-    }, 
-    __filename: function(req, file, cb) {
-        cb(null, 'article' + Date.now() + file.originalname());
+var storage = multer.diskStorage({
+    destination: function (cb) {
+      cb(null, './images/articles/')
+    },
+    filename: function (cb) {
+      cb(null, Date.now() + '.png')
     }
-});
-
-const uploads = multer({storage: storage});
+})
+  
+var upload = multer({ storage: storage });
 
 const articleController = require('../controllers/articleController');
 
@@ -22,6 +21,6 @@ router.get('/article/:id', articleController.getArticle);
 router.delete('/deleteArticle/:id', articleController.deleteArticle);
 router.put('/edit/:id', articleController.editArticle);
 //The second params on the following route definition is a Middleware that actually will execute BEFORE the upload method of the controller
-router.post('/uploadImg/:id', [uploads.single('file')], articleController.upload);
+router.post('/uploadImg/:id', upload.single('file'), articleController.upload);
 
 module.exports = router;
