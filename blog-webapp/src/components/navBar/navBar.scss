@@ -1,0 +1,41 @@
+.navBar-component {
+    background: #5b5b5b;;
+    display: grid;
+    grid-template-columns: 3fr 6fr 3fr;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.navBar-seccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navBar-ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.navBar-li {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.border-right {
+    border-right: 2px solid white;
+}
+
+.navBar-link {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.navBar-img {
+    margin: 5px;
+}
