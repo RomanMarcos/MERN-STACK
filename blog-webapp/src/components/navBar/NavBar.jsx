@@ -8,6 +8,7 @@ export const NavBar = () => {
       <div className='navBar-component'>
         <div className='navBar-seccion'>
           <ul className='navBar-ul'>
+          <li className='navBar-li border-right'> <Link to='/' className='navBar-link'> Home </Link> </li>
             <li className='navBar-li border-right'> <Link to='/articles' className='navBar-link'>Articles</Link></li>
             <li className='navBar-li'> <a href='#' className='navBar-link'> New article </a> </li>
           </ul>

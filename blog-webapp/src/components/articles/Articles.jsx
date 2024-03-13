@@ -1,19 +1,32 @@
+import { useEffect, useState } from 'react';
 import './articles.scss';
+import { getArticles } from '../../services/apiCalls';
+import { Loader } from '../loader/Loader';
+import { SingleArticle } from '../singleArticle/SingleArticle';
 
 export const Articles = () => {
+
+  const [showArticles, setShowArticles] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    getArticles().then(( {data} ) => {
+      setShowArticles(data.articles);
+      setIsLoading(true);
+    });
+
+  }, []);
+
   return (
     <div className='blogs-articles-container'>
       <div className="articles-container">
-        {/* the 'articles' structure is the one to clone to list more articles */}
-        <div className='articles'>
-          <div className='articles-img'>
-            <img src='image.png' alt='blog-image' />
-          </div>
-          <div className='articles-content'>
-            <h1 className='articles-title'>Blog title</h1>
-            <h2 className='articles-description'>Blog description</h2>
-          </div>
-        </div>
+        {isLoading ? (
+           showArticles.map((article) => {
+            return ( <SingleArticle key={article.id} article={article} /> )
+          })
+        ) : (
+          <Loader />
+        )}
         
       </div>
     </div>
