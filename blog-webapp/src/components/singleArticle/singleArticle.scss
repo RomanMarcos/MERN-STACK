@@ -1,0 +1,33 @@
+.articles {
+    display: flex;
+    padding: 20px;
+}
+
+.articles-img {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.articles-content {
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.articles-title {
+    font-family: Prumo, Georgia, "serif";
+    font-weight: 100;
+    letter-spacing: -.04rem;
+    color: #333;
+    font-size: 3rem;
+}
+
+.articles-description {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: #333;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+}
