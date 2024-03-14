@@ -5,7 +5,7 @@ const path = require('path');
 
 const newArticle = (req, res) => {
     
-    const { title, content } = req.body;
+    const { title, content, image } = req.body;
 
     try {
         
@@ -13,7 +13,7 @@ const newArticle = (req, res) => {
             throw new Error();
         }
 
-        const article = new articleModel({title, content});
+        const article = new articleModel({title, content, image});
 
         article.save()
         .then(() => {
@@ -135,7 +135,7 @@ const editArticle = (req, res) => {
 
 const upload = (req, res) => {
 
-    let file = req.file.originalname;
+    let file = req.body.file;
 
     let fileplit = file.split('\.');
     let extension = fileplit[1];
@@ -150,7 +150,7 @@ const upload = (req, res) => {
 
     const {id} = req.params;
 
-    articleModel.findOneAndUpdate({ _id: id }, { image: req.file.filename }, {new: true})
+    articleModel.findOneAndUpdate({ _id: id }, { image: file }, {new: true})
         .then((article) => {
             return res.status(200).json({
                 status: 'Success',

@@ -3,6 +3,7 @@ import './singleArticle.scss';
 import { env } from '../../../environment.js';
 
 export const SingleArticle = ({ article }) => {
+
   return (
     <>
     <div className='articles' key={article.id}>
