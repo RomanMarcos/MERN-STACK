@@ -10,7 +10,7 @@ export const NavBar = () => {
           <ul className='navBar-ul'>
           <li className='navBar-li border-right'> <Link to='/' className='navBar-link'> Home </Link> </li>
             <li className='navBar-li border-right'> <Link to='/articles' className='navBar-link'>Articles</Link></li>
-            <li className='navBar-li'> <a href='#' className='navBar-link'> New article </a> </li>
+            <li className='navBar-li'> <Link to='/new-article' className='navBar-link'> New article </Link> </li>
           </ul>
         </div>
         <div className='navBar-seccion'>
