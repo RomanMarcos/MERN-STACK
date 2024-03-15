@@ -9,12 +9,14 @@ export const createArticle = async (title, content, image) => {
     return await axios.post(`${env.API_URL}/article/new`, {
         title: title,
         content: content, 
-        image: image
+        image: image.name
     }).then((data) => {
-        saveImage(data.data.article._id, data.data.article.image);
+        saveImage(data.data.article._id, image);
     });
 }
 
 export const saveImage = async (id, image) => {
-    return await axios.post(`${env.API_URL}/uploadImg/${id}`, {file: image});
+    const formData = new FormData();
+    formData.append('file', image);
+    return await axios.post(`${env.API_URL}/uploadImg/${id}`, formData);
 }

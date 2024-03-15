@@ -15,7 +15,7 @@ export const NewArticle = () => {
 
   const sendForm = (e) => {
     e.preventDefault();
-    createArticle(title.current.value, content.current.value, image.current.files[0].name);
+    createArticle(title.current.value, content.current.value, image.current.files[0]);
   }
 
   return (

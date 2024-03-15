@@ -8,7 +8,7 @@ export const SingleArticle = ({ article }) => {
     <>
     <div className='articles' key={article.id}>
       <div className='articles-img'>
-        <img src={`${env.API_URL}/image/${article.image}`} alt='blog-image' />
+        <img className='image' src={`${env.API_URL}/image/${article.image}`} alt='blog-image' />
       </div>
       <div className='articles-content'>
         <h1 className='articles-title'>{article.title}</h1>

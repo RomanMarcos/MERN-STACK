@@ -17,16 +17,14 @@ const newArticle = (req, res) => {
 
         article.save()
         .then(() => {
-            console.log('Article saved correctly!');
+            return res.status(200).json({
+                status: 'Success. Article saved correctly!',
+                article: article
+            });
         })
         .catch((error) => {
             console.log(`There was an error: ${error}`);
             throw new Error();
-        });
-
-        return res.status(200).json({
-            status: 'Success',
-            article: article
         });
 
     } catch(error) {
@@ -134,9 +132,8 @@ const editArticle = (req, res) => {
 }
 
 const upload = (req, res) => {
-
-    let file = req.body.file;
-
+    
+    let file = req.file.originalname;
     let fileplit = file.split('\.');
     let extension = fileplit[1];
 
@@ -150,18 +147,18 @@ const upload = (req, res) => {
 
     const {id} = req.params;
 
-    articleModel.findOneAndUpdate({ _id: id }, { image: file }, {new: true})
+    articleModel.findOneAndUpdate({ _id: id }, { image: req.file.filename }, {new: true})
         .then((article) => {
             return res.status(200).json({
                 status: 'Success',
-                message: 'The article was successfully edited..',
+                message: 'The image was successfully added...',
                 article: article
             });
         })
-        .catch(() => {
+        .catch((err) => {
             return res.status(404).json({
                 status: 'Error',
-                message: 'There was an error trying to edit the article..'
+                message: `There was an error trying to add the image to the article... ${err}`
             });
         });
 }
