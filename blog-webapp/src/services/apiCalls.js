@@ -5,6 +5,10 @@ export const getArticles = async () => {
     return await axios.get(`${env.API_URL}/articles`);
 }
 
+export const getArticle = async (text) => {
+    return await axios.get(`${env.API_URL}/article/${text}`);
+}
+
 export const createArticle = async (title, content, image) => {
     return await axios.post(`${env.API_URL}/article/new`, {
         title: title,
