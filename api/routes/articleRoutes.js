@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-var multer = require('multer');
+const multer = require('multer');
 
-var storage = multer.diskStorage({
-    destination: function (cb) {
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
       cb(null, './images/articles/')
     },
-    filename: function (cb) {
+    filename: function (req, file, cb) {
       cb(null, Date.now() + '.png')
     }
 })
   
-var upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 const articleController = require('../controllers/articleController');
 

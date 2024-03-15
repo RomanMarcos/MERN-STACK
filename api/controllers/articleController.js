@@ -5,7 +5,7 @@ const path = require('path');
 
 const newArticle = (req, res) => {
     
-    const { title, content } = req.body;
+    const { title, content, image } = req.body;
 
     try {
         
@@ -13,20 +13,18 @@ const newArticle = (req, res) => {
             throw new Error();
         }
 
-        const article = new articleModel({title, content});
+        const article = new articleModel({title, content, image});
 
         article.save()
         .then(() => {
-            console.log('Article saved correctly!');
+            return res.status(200).json({
+                status: 'Success. Article saved correctly!',
+                article: article
+            });
         })
         .catch((error) => {
             console.log(`There was an error: ${error}`);
             throw new Error();
-        });
-
-        return res.status(200).json({
-            status: 'Success',
-            article: article
         });
 
     } catch(error) {
@@ -134,9 +132,8 @@ const editArticle = (req, res) => {
 }
 
 const upload = (req, res) => {
-
+    
     let file = req.file.originalname;
-
     let fileplit = file.split('\.');
     let extension = fileplit[1];
 
@@ -154,14 +151,14 @@ const upload = (req, res) => {
         .then((article) => {
             return res.status(200).json({
                 status: 'Success',
-                message: 'The article was successfully edited..',
+                message: 'The image was successfully added...',
                 article: article
             });
         })
-        .catch(() => {
+        .catch((err) => {
             return res.status(404).json({
                 status: 'Error',
-                message: 'There was an error trying to edit the article..'
+                message: `There was an error trying to add the image to the article... ${err}`
             });
         });
 }
