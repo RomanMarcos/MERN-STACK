@@ -2,7 +2,11 @@ import PropTypes from 'prop-types';
 import './singleArticle.scss';
 import { env } from '../../../environment.js';
 
+import useDateFormat from '../../hooks/useDateFormat.js';
+
 export const SingleArticle = ({ article }) => {
+
+  const formattedDate = useDateFormat(article.date);
 
   return (
     <>
@@ -13,6 +17,7 @@ export const SingleArticle = ({ article }) => {
       <div className='articles-content'>
         <h1 className='articles-title'>{article.title}</h1>
         <h2 className='articles-description'>{article.content}</h2>
+        <p className='article-date'>Publised on: <strong>{formattedDate}</strong></p>
       </div>
     </div>
     </>
