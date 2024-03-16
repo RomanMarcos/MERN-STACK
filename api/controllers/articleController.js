@@ -77,8 +77,9 @@ const getArticle = (req, res) => {
             results
         });
         } catch (error) {
-            return res.status(404).json({
-                status: 'Error',
+            return res.status(200).json({
+                status: 'Not Found',
+                results: [],
                 message: 'There are no article in the database that match with the search..'
             });
         }

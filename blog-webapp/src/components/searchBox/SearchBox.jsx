@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import './searchBox.scss';
 import { useRef } from 'react';
-import { getArticle } from '../../services/apiCalls';
+import { useNavigate } from 'react-router-dom';
 
 export const SearchBox = () => {
 
     const [value, setValue] = useState('');
     const inputRef = useRef();
+    const navigate = useNavigate();
 
     const handleValue = () => {
         setValue(inputRef.current.value);
@@ -14,9 +15,7 @@ export const SearchBox = () => {
 
     const searchArticle = (event) => {
       if (event.key === 'Enter') {
-        getArticle(value).then((data) => {
-          console.log(data.data.results);
-        }) ;
+        navigate(`/results?search=${value}`);
       }
     }
 
