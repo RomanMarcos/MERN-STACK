@@ -59,21 +59,31 @@ const getArticles = (req, res) => {
 
 const getArticle = (req, res) => {
 
-    const { id } = req.params;
+    const { text } = req.params;
 
-    articleModel.findById(id)
-    .then((article) => {
-        return res.status(200).json({
+    (async () => {
+        try {
+          const results = await articleModel.find({
+            $or: [
+              { title: { $regex: text, $options: 'i' } }, // option 'i' works to make a non-sensible search related to upper case and lower case
+              { content: { $regex: text, $options: 'i' } }
+            ]
+          });
+          
+          if (results.length == 0) throw new Error();
+
+          return res.status(200).json({
             status: 'Success',
-            article
+            results
         });
-    })
-    .catch(() => {
-        return res.status(404).json({
-            status: 'Error',
-            message: 'There are no article in the database with that exact ID..'
-        });
-    });
+        } catch (error) {
+            return res.status(200).json({
+                status: 'Not Found',
+                results: [],
+                message: 'There are no article in the database that match with the search..'
+            });
+        }
+    })();
 
 }
 
