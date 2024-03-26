@@ -8,6 +8,11 @@ El proyecto es un BLOG completo (web app + API) usando el conocido stack MERN.
 
 - git clone git@github.com:RomanMarcos/MERN-STACK.git
 
+## DOCKER (prerequisitos: docker & docker-compose instalados)
+
+- cd MERN-STACK
+- docker-compose up
+
 ## Mongo DB
 
 - Tener Mongo & mongoose para tener una base de datos local.
